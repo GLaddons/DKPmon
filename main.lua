@@ -131,7 +131,7 @@ function DKPmon:OnEnable()
    self:RegisterEvent("LOOT_OPENED", function() DKPmon.Looting:OnLootEvent() end)
    self:RegisterEvent("RAID_ROSTER_UPDATE", 
        function() 
-          if GetNumRaidMembers() == 0 then 
+          if IsInRaid() == false or GetNumGroupMembers() == 0 then 
              -- Turn off the log if one's going
              local logtab = DKPmon.Logging:GetTable()
              if logtab.active then DKPmon.Logging:StopLog() end
@@ -142,7 +142,7 @@ function DKPmon:OnEnable()
    self:RegisterEvent("RAID_INSTANCE_WELCOME", 
 	function()
           local logtab = DKPmon.Logging:GetTable()
-          if GetNumRaidMembers() == 0 then -- Heroic instance
+          if IsInRaid == false or GetNumGroupMembers() == 0 then -- Heroic instance
              return 
           end 
           if logtab.active then return end -- Logging already turned on.
@@ -170,7 +170,7 @@ end
 --[[ Function for checking the whether the raid has a DKPmon leader set ]]
 function DKPmon:SetLeader(val)
    -- Never allowed to be leader if you're not in a raid
-   if GetNumRaidMembers() == 0 then self.db.realm.amLeader = false; return end
+   if IsInRaid() == false then self.db.realm.amLeader = false; return end
    if (val and not self.db.realm.amLeader) then
       DKPmon:Print(L["I'm now the DKP lead."])
    end
@@ -188,7 +188,7 @@ function DKPmon:GetLeaderState()
    return self.db.realm.amLeader
 end
 function DKPmon:CheckLeader()
-   if GetNumRaidMembers() == 0 then
+   if IsInRaid() == false then
       -- Not in a raid, ignore.
       return
    end

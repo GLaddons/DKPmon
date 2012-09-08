@@ -369,7 +369,7 @@ Returns:
 ]]
 function LootFrame:OpenBidding()
    -- Make sure we're in a raid
-   if GetNumRaidMembers() == 0 then
+   if IsInRaid() == false then
       DKPmon:Print(L["You're not in a raid group."])
       return
    end

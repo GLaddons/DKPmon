@@ -105,7 +105,7 @@ function Log:StartLog(name)
    end
 
    -- If we're not in a raid, we can't start a log
-   if GetNumRaidMembers() == 0 then DKPmon:Print(L["You're not in a raid. Cannot start logging."]); return end
+   if IsInRaid() == false then DKPmon:Print(L["You're not in a raid. Cannot start logging."]); return end
 
    local timestamp = DKPmon:GetTimestamp()
    local datestr = date("%m/%d/%y %H:%M:%S")
@@ -496,7 +496,7 @@ end
 function Log:LogToRaidTrackerReportValidity()
 	local status = DKPmon.Logging:LogToRaidTrackerCheckValidity()
 	if (status == 3) then
-		if((GetNumRaidMembers() == 0) and (GetNumPartyMembers() == 0)) then
+		if((IsInRaid() == false) and (GetNumGroupMembers() == 0)) then
 			DKPmon:Print("You have logging to Guild Launch Raid Tracker active. However, you are not in a raid or a group so logging is currently disabled.");
 			return false;
 		else

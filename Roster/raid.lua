@@ -38,7 +38,7 @@ Returns:
 function RaidRoster:BuildRoster()
    -- Check if we're in a Battleground, and don't update anything if we are
    if (GetNumBattlefieldScores() > 0) then return end
-   local numMembers = GetNumRaidMembers()
+   local numMembers = GetNumGroupMembers()
    local rostertab = self:GetTable()
    local haveLevelZeros = false
    if numMembers == 0 then
@@ -80,7 +80,7 @@ Returns:
 function RaidRoster:UpdateRoster()
    -- Check if we're in a Battleground, and don't update anything if we are
    if (GetNumBattlefieldScores() > 0) then return end
-   local numMembers = GetNumRaidMembers()
+   local numMembers = GetNumGroupMembers()
    local rostertab = self:GetTable()
    local haveLevelZeros = false
    if numMembers == 0 then
@@ -130,7 +130,7 @@ function RaidRoster:UpdateLevelZeros()
       DKPmon:StopMetro("DKPmonUpdateLevelZeros")
       return 
    end
-   local numMembers = GetNumRaidMembers()
+   local numMembers = GetNumGroupMembers()
    local rostertab = self:GetTable()
    local haveL0 = false
    if numMembers == 0 then -- empty raid, not sure how we got called.

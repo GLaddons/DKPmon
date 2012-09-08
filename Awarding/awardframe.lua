@@ -278,15 +278,15 @@ Functions for updating the status strings in the miniframe
 function AwardFrame:UpdateRaidText()
    if self.frame == nil then return end
    local nonlist, ninraid = 0, 0
-   if GetNumRaidMembers() ~= 0 then
+   if GetNumGroupMembers() ~= 0 then
       -- Go through the raid roster and calculate:
       --  1) The number of people on the roster.
       --  2) The number of people on the roster with onlist=true
       local roster = DKPmon.RaidRoster:GetRoster()
       local name, tab
       for name, tab in pairs(roster) do
-	 ninraid = ninraid + 1
-	 if tab.onlist then nonlist = nonlist + 1 end
+	       ninraid = ninraid + 1
+	       if tab.onlist then nonlist = nonlist + 1 end
       end
    end
    self.topframe.raidstr:SetText(string.format(L["%d/%d raid members selected"], nonlist, ninraid))

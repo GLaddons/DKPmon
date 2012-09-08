@@ -393,7 +393,7 @@ function LootItem:MasterLootItem()
    local slot = i
    -- 2) Determine the candidate index of the winner.
    LootFrame_OnEvent("UPDATE_MASTER_LOOT_LIST")
-   local nRaiders = GetNumRaidMembers()
+   local nRaiders = GetNumGroupMembers()
    local name
    local winnername
    if self.bidinfo.winner == L["Bank"] then

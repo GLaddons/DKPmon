@@ -303,7 +303,7 @@ DKPmon.Options.fubar = {
 	      func = function()
 	  	        local logtab = DKPmon.Logging:GetTable()
 		        local logname = logtab.logname
-		        if GetNumRaidMembers() == 0 then
+		        if IsInRaid() == false then
 		  	   DKPmon:Print(L["You must be in a raid to begin a log."])
 			   return
 		        end
@@ -325,7 +325,7 @@ DKPmon.Options.fubar = {
 	      name = L['Stop log'],
 	      desc = L["Stop logging for your current log"],
 	      func = function()
-		        if GetNumRaidMembers() == 0 then
+		        if IsInRaid() == false then
 			   -- Not in a raid = definitely stop the log
 			   DKPmon.Logging:StopLog()
 			   return
