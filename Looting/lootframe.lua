@@ -330,11 +330,11 @@ function LootFrame:ShowActionMenu()
       dewOptions.args.canceltimer  = { type = 'execute', name = L['Cancel closing timer'], desc = L['Cancel the countdown timer for close of bidding'],
 	 func = function() 
 		   DKPmon:StopMetro("DKPmonClose"); 
-		   if IsRaidOfficer() then 
-		      SendChatMessage(L["Bid closing countdown cancelled."], "RAID_WARNING")
-		   else
+		   --if IsRaidOfficer() then 
+		   --   SendChatMessage(L["Bid closing countdown cancelled."], "RAID_WARNING")
+		   --else
 		      SendChatMessage(L["Bid closing countdown cancelled."], "RAID")
-		   end 
+		   --end 
 		   dewdrop:Close()
 		end, 
 	 order = 5 }
@@ -454,21 +454,21 @@ function LootFrame:StartCloseBiddingTimer()
    DKPmon:StopMetro("DKPmonClose")
    if ctime == 0 then
       -- Time's up, close the bidding.
-      if IsRaidOfficer() then
-	 SendChatMessage(L["Bidding is now closed."], "RAID_WARNING")
-      else
-	 SendChatMessage(L["Bidding is now closed."], "RAID")
-      end
+     --if IsRaidOfficer() then
+  	 --  SendChatMessage(L["Bidding is now closed."], "RAID_WARNING")
+     --else
+  	   SendChatMessage(L["Bidding is now closed."], "RAID")
+     --end
       self:SetBidState(2) -- Move to winner picking
       DKPmon.Comm:SendToBidder("C") -- Send the close of bidding command
       DKPmon.DKP:Get():OnCloseBidding()
       return
    end
-   if IsRaidOfficer() then
-      SendChatMessage(string.format(L["Bidding closing in %g seconds."], ctime), "RAID_WARNING")
-   else
+   --if IsRaidOfficer() then
+   --   SendChatMessage(string.format(L["Bidding closing in %g seconds."], ctime), "RAID_WARNING")
+   --else
       SendChatMessage(string.format(L["Bidding closing in %g seconds."], ctime), "RAID")
-   end
+   --end
    if ctime > 10 then
       timerDur = ctime - 10
    else

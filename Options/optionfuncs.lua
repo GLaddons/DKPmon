@@ -55,11 +55,14 @@ function DKPmon:ParseBidItems(argstring)
    -- Extract item links
    local nadded = 0
    for link in string.gmatch(argstring, "|c[0-9a-fA-F]+|Hitem[%:%d%-]+|h%[[^%]]+%]|h|r") do
+      --self:Print("Item LInk Match")
       if  self.Looting:ProcessItemLink(link, L["Console"]) then
-	 nadded = nadded + 1
+	     nadded = nadded + 1
+       --self:Print("Item Added")
       end
    end
    if nadded > 0 then
+      --self:Print("Showing")
       self.Looting:Show()
    end
 end
