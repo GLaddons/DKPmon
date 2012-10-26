@@ -41,7 +41,7 @@ function RaidRoster:BuildRoster()
    local numMembers = GetNumGroupMembers()
    local rostertab = self:GetTable()
    local haveLevelZeros = false
-   if numMembers == 0 then
+   if numMembers == 0 or IsInRaid() == false then
       DKPmon:SetLeader(false) -- Can't be running a raid if you're not in one.
       rostertab.list = {}
       rostertab.left = {}
@@ -83,7 +83,7 @@ function RaidRoster:UpdateRoster()
    local numMembers = GetNumGroupMembers()
    local rostertab = self:GetTable()
    local haveLevelZeros = false
-   if numMembers == 0 then
+   if numMembers == 0 or IsInRaid() == false then
       rostertab.list = {}
       rostertab.left = {}
       return
@@ -133,7 +133,7 @@ function RaidRoster:UpdateLevelZeros()
    local numMembers = GetNumGroupMembers()
    local rostertab = self:GetTable()
    local haveL0 = false
-   if numMembers == 0 then -- empty raid, not sure how we got called.
+   if numMembers == 0 or IsInRaid() == false then -- empty raid, not sure how we got called.
       DKPmon:StopMetro("DKPmonUpdateLevelZeros")
       return
    end
